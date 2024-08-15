@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import defaultProfile from "../../assets/profile.png";
 
 const Navbar = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { logoutUser, user, loading } = useContext(AuthContext);
   return (
     <div className="container mx-auto">
       <div className="navbar">
@@ -91,12 +91,21 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </div>
-                  <button className="btn btn-error text-white">Logout</button>
+                  <button
+                    onClick={() => logoutUser()}
+                    className="btn btn-error text-white"
+                  >
+                    Logout
+                  </button>
                 </>
               ) : (
                 <>
-                  <button className="btn btn-error text-white">Login</button>
-                  <button className="btn btn-error text-white">Sign Up</button>
+                  <Link to="/login" className="btn btn-primary text-white">
+                    Login
+                  </Link>
+                  <Link to="signup" className="btn btn-neutral text-white">
+                    Sign Up
+                  </Link>
                 </>
               )}
             </>
