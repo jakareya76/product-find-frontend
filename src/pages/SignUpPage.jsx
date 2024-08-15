@@ -1,14 +1,40 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import signUpSvg from "../assets/signup.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import SocialLogin from "../components/shared/SocialLogin";
+import { AuthContext } from "../context/AuthProvider";
+import signUpSvg from "../assets/signup.svg";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../services/firebase.config";
 
 const SignUpPage = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { createUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleFormSubmit = async (data) => {
-    console.log(data);
+    const { username, email, password } = data;
+
+    try {
+      await createUser(email, password);
+
+      await updateProfile(auth.currentUser, {
+        displayName: username,
+      });
+
+      reset();
+
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  if (user) {
+    return navigate("/");
+  }
+
   return (
     <div className="container mx-auto">
       <div className="hero min-h-screen">
@@ -27,7 +53,7 @@ const SignUpPage = () => {
             >
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">Username</span>
                 </label>
                 <input
                   type="text"

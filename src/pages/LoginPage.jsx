@@ -1,14 +1,29 @@
 import { useForm } from "react-hook-form";
 import loginSvg from "../assets/login.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/shared/SocialLogin";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const LoginPage = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { loginUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleFormSubmit = async (data) => {
-    console.log(data);
+    const { email, password } = data;
+    try {
+      await loginUser(email, password);
+      reset();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  if (user) {
+    return navigate("/");
+  }
 
   return (
     <div className="container mx-auto">
