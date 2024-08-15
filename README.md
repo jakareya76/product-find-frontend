@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-Check out the live demo of the project here: [Product Find Live](#)
+Check out the live demo of the project here: [Product Find Live](https://jakareya.vercel.app)
 
 ## Features
 
