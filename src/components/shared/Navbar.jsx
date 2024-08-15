@@ -18,6 +18,14 @@ const Navbar = () => {
       text: "Contact",
       link: "/contact",
     },
+    {
+      text: "Login",
+      link: "/login",
+    },
+    {
+      text: "Sign Up",
+      link: "/signup",
+    },
   ];
 
   return (
@@ -45,9 +53,13 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm gap-3  dropdown-content bg-base-100 rounded z-[1] mt-5 w-36 p-2 shadow"
             >
-              {navOptions.map((nav) => {
+              {navOptions.map((nav, idx) => {
                 return (
-                  <Link to={nav.link} className="p-1 font-semibold border-b">
+                  <Link
+                    to={nav.link}
+                    key={idx}
+                    className="p-1 font-semibold border-b"
+                  >
                     {nav.text}
                   </Link>
                 );
@@ -58,9 +70,13 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu gap-10 menu-horizontal px-1">
-            {navOptions.map((nav) => {
+            {navOptions.map((nav, idx) => {
               return (
-                <Link to={nav.link} className="font-semibold uppercase">
+                <Link
+                  to={nav.link}
+                  key={idx}
+                  className="font-semibold uppercase"
+                >
                   {nav.text}
                 </Link>
               );
