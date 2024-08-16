@@ -3,6 +3,8 @@ import { FaStar } from "react-icons/fa";
 const ProductCard = ({ product }) => {
   const { productName, brand, productImage, price, ratings } = product;
 
+  console.log(product);
+
   return (
     <div className="p-2 border rounded-xl">
       <img
