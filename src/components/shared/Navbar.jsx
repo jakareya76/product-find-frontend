@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import defaultProfile from "../../assets/profile.png";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const { logoutUser, user, loading } = useContext(AuthContext);
@@ -43,7 +44,7 @@ const Navbar = () => {
               })}
             </ul>
           </div>
-          <a className="font-bold text-md md:text-xl">Product Find</a>
+          <img src={logo} alt="logo" className="w-14" />
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu gap-10 menu-horizontal px-1">

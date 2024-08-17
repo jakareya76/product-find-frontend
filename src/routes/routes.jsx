@@ -7,6 +7,7 @@ import SignUpPage from "../pages/SignUpPage";
 import ProfilePage from "../pages/ProfilePage";
 import AllProducts from "../pages/product/AllProducts";
 import ContactPage from "../pages/ContactPage";
+import Admin from "../pages/admin/Admin";
 
 export const routes = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUpPage />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
   },

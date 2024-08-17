@@ -99,7 +99,7 @@ const Products = () => {
       </div>
 
       {/* Filter and Sort Options */}
-      <div className="flex flex-col md:flex-row justify-between mb-8">
+      <div className="flex flex-col md:flex-row justify-center gap-5">
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           {/* Brand Name Filter */}
           <select
@@ -155,7 +155,7 @@ const Products = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mt-10">
         <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {filteredProducts?.map((product) => (
             <ProductCard key={product._id} product={product} />
