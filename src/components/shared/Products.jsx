@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../ProductCard";
 
@@ -17,6 +17,13 @@ const Products = () => {
     limit,
     searchQuery
   );
+
+  const brands = allProducts
+    ? [...new Set(allProducts.map((product) => product.brand))]
+    : [];
+  const categories = allProducts
+    ? [...new Set(allProducts.map((product) => product.category))]
+    : [];
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -108,10 +115,11 @@ const Products = () => {
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <option value="">All Brands</option>
-            <option value="Sony">Sony</option>
-            <option value="Apple">Apple</option>
-            <option value="Samsung">Samsung</option>
-            {/* Add more brands as needed */}
+            {brands.map((brand) => (
+              <option key={brand} value={brand}>
+                {brand}
+              </option>
+            ))}
           </select>
 
           {/* Category Name Filter */}
@@ -121,10 +129,11 @@ const Products = () => {
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <option value="">All Categories</option>
-            <option value="Headphones">Headphones</option>
-            <option value="Smartphones">Smartphones</option>
-            <option value="Laptops">Laptops</option>
-            {/* Add more categories as needed */}
+            {categories.map((category, idx) => (
+              <option key={idx} value={category}>
+                {category}
+              </option>
+            ))}
           </select>
 
           {/* Price Range Filter */}
